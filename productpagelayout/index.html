@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <!-- Liên kết đến file CSS riêng -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Container chính bao bọc toàn bộ trang sản phẩm -->
+    <main class="product-container">
+        
+        <!-- CỘT TRÁI (60%): Chứa hình ảnh sản phẩm -->
+        <div class="product-gallery">
+            <img src="https://picsum.photos/id/1025/800/800" alt="Áo khoác nam mùa đông cao cấp">
+            
+            <!-- Phần Flexbox nhỏ (tùy chọn) để xếp các ảnh thumbnail nằm ngang dưới ảnh lớn -->
+            <div class="product-thumbnails">
+                <img src="https://picsum.photos/id/1025/200/200" alt="Thumb 1">
+                <img src="https://picsum.photos/id/1024/200/200" alt="Thumb 2">
+                <img src="https://picsum.photos/id/1023/200/200" alt="Thumb 3">
+            </div>
+        </div>
+
+        <!-- CỘT PHẢI (40%): Chứa thông tin mua hàng -->
+        <div class="product-info">
+            <h1 class="product-title">Áo Khoác Nam Mùa Đông Cao Cấp</h1>
+            <div class="product-price">1.500.000₫ 
+                <span class="old-price">2.000.000₫</span>
+            </div>
+            
+            <p class="product-description">
+                Áo khoác thiết kế mang lại sự ấm áp và phong cách trong những ngày đông lạnh giá. Chất liệu vải chống thấm nước, lớp lót lông vũ tự nhiên siêu nhẹ, cùng đường may tỉ mỉ đảm bảo độ bền tối đa. Phù hợp mặc đi chơi, đi làm hay dã ngoại ngoài trời.
+            </p>
+
+            <div class="product-options">
+                
+                <!-- Nhóm Kích thước (Dùng Flexbox) -->
+                <div class="option-group">
+                    <span class="option-label">Kích cỡ:</span>
+                    <div class="flex-box size-options">
+                        <span class="size-item">S</span>
+                        <span class="size-item active">M</span>
+                        <span class="size-item">L</span>
+                        <span class="size-item">XL</span>
+                    </div>
+                </div>
+
+                <!-- Nhóm Màu sắc (Dùng Flexbox) -->
+                <div class="option-group">
+                    <span class="option-label">Màu sắc:</span>
+                    <div class="flex-box color-options">
+                        <span class="color-circle" style="background-color: #000000;" title="Đen"></span>
+                        <span class="color-circle active" style="background-color: #34495e;" title="Xanh Navy"></span>
+                        <span class="color-circle" style="background-color: #bdc3c7;" title="Xám"></span>
+                    </div>
+                </div>
+
+                <!-- Nhóm Số lượng (Dùng Flexbox) -->
+                <div class="option-group">
+                    <span class="option-label">Số lượng:</span>
+                    <div class="flex-box quantity-selector">
+                        <button class="qty-btn">-</button>
+                        <input type="text" value="1" class="qty-input" readonly>
+                        <button class="qty-btn">+</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Nút mua hàng -->
+            <button class="add-to-cart-btn">THÊM VÀO GIỎ HÀNG</button>
+        </div>
+
+    </main>
+
+</body>
+</html>

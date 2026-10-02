@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* =================================================================
+   1. CẤU HÌNH CSS GRID CHO GALLERY CONTAINER
+   ================================================================= */
+.gallery-container {
+    /* Kích hoạt CSS Grid */
+    display: grid;
+    
+    /* 
+       grid-template-columns: Tự động chia cột.
+       - repeat(4, 1fr): Chia layout thành 4 cột đều nhau.
+    */
+    grid-template-columns: repeat(4, 1fr);
+    
+    /* 
+       grid-auto-rows: 250px;
+       - Thiết lập chiều cao mặc định cho tất cả các hàng được tạo ra là 250px.
+       - Việc cố định chiều cao hàng này là cần thiết để khi sử dụng grid-row: span,
+         nó sẽ tính toán chiều cao gấp đôi hoặc gấp ba chính xác, tạo nên hiệu ứng đan xen (masonry).
+    */
+    grid-auto-rows: 250px;
+    
+    /* 
+       grid-auto-flow: dense;
+       - Thuộc tính QUAN TRỌNG NHẤT cho bố cục Masonry bằng Grid.
+       - 'dense' ra lệnh cho trình duyệt tự động tìm các phần tử nhỏ hơn 
+         để "lấp đầy" vào các khoảng trống do các phần tử lớn (span) để lại.
+       - Điều này đảm bảo không có lỗ hổng (ô trống) nào trong lưới.
+    */
+    grid-auto-flow: dense;
+    
+    /* gap: 15px khoảng cách giữa các hàng và cột theo yêu cầu */
+    gap: 15px;
+    
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* =================================================================
+   2. STYLING CHO CÁC Ô ẢNH ĐỂ ĐAN XEN (SPAN)
+   ================================================================= */
+
+/* Ô ảnh mặc định (Không span, chiếm 1 cột và 1 hàng) */
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden; /* Tránh ảnh bị tràn ra ngoài viền bo góc */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02); /* Phóng to nhẹ khi di chuột */
+}
+
+/* 
+   Ảnh lớn: Chiếm 2 cột và 2 hàng 
+   grid-column: span 2 -> Kéo dài chiếm 2 ô theo chiều ngang
+   grid-row: span 2 -> Kéo dài chiếm 2 ô (250px x 2 + gap) theo chiều dọc
+*/
+.item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* 
+   Ảnh dọc (Tall): Chiếm 1 cột và 2 hàng 
+*/
+.item-tall {
+    grid-row: span 2;
+}
+
+/* 
+   Ảnh ngang rộng (Wide): Chiếm 2 cột và 1 hàng 
+*/
+.item-wide {
+    grid-column: span 2;
+}
+
+
+/* =================================================================
+   3. XỬ LÝ HÌNH ẢNH (KHÔNG BỊ MÉO)
+   ================================================================= */
+.gallery-item img {
+    /* Bắt ảnh phải chiếm 100% kích thước của .gallery-item (kể cả ô đó đã được span to ra) */
+    width: 100%;
+    height: 100%;
+    
+    /* 
+       object-fit: cover;
+       - Thuộc tính cực kỳ quan trọng giúp ảnh lấp đầy toàn bộ ô chứa mà KHÔNG BỊ MÉO TỶ LỆ.
+       - Nếu ô chứa có tỷ lệ khác với ảnh gốc, ảnh sẽ tự động được zoom lên và cắt cúp đi phần thừa.
+    */
+    object-fit: cover;
+    
+    /* Loại bỏ khoảng trống nhỏ dưới đáy thẻ img mặc định */
+    display: block; 
+}
+
+/* Responsive cho màn hình nhỏ (Mobile & Tablet) */
+@media (max-width: 992px) {
+    .gallery-container {
+        /* Chuyển xuống 3 cột trên tablet */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        /* Chuyển xuống 2 cột trên điện thoại lớn */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        /* Chuyển xuống 1 cột, huỷ bỏ span trên mobile nhỏ */
+        grid-template-columns: 1fr;
+    }
+    
+    /* Bỏ span trên mobile vì 1 cột không thể span 2 cột được nữa */
+    .item-large, .item-wide {
+        grid-column: span 1;
+    }
+}
