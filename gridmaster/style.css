@@ -1,0 +1,204 @@
+/* Reset CSS cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* ========================================================
+   1. THIẾT LẬP CSS GRID CHO HOLY GRAIL LAYOUT 
+   ======================================================== */
+
+.grid-container {
+    /* 
+       display: grid; 
+       - Kích hoạt môi trường lưới (CSS Grid) cho thẻ bao ngoài (container). 
+       - Cho phép sử dụng các thuộc tính grid khác để sắp xếp các phần tử con (items) bên trong nó. 
+    */
+    display: grid;
+
+    /* 
+       grid-template-columns: 200px 1fr 250px;
+       - Định nghĩa số lượng và chiều rộng của các cột trong lưới.
+       - Cột 1 (Sidebar trái): Rộng cố định 200px.
+       - Cột 2 (Main Content): Dùng '1fr' (1 fraction - 1 phần). Nó sẽ chiếm toàn bộ phần không gian trống còn lại theo chiều ngang, đảm bảo nó luôn rộng hơn 2 sidebar.
+       - Cột 3 (Sidebar phải): Rộng cố định 250px.
+    */
+    grid-template-columns: 200px 1fr 250px;
+
+    /* 
+       grid-template-rows: auto 1fr auto;
+       - Định nghĩa số lượng và chiều cao của các hàng trong lưới.
+       - Hàng 1 (Header): 'auto' - Tự động điều chỉnh chiều cao theo nội dung bên trong Header.
+       - Hàng 2 (Phần giữa gồm 2 Sidebar và Main): '1fr' - Chiếm phần chiều cao còn lại. Điều này giúp hai Sidebar tự động kéo dài chiều cao bằng đúng với chiều cao của Main Content.
+       - Hàng 3 (Footer): 'auto' - Tự động điều chỉnh chiều cao theo nội dung bên trong Footer.
+    */
+    grid-template-rows: auto 1fr auto;
+
+    /* 
+       grid-template-areas: 
+       - Bản đồ bố cục trực quan nhất của CSS Grid. Đặt tên các vùng lưới và sắp xếp chúng.
+       - Mỗi chuỗi string ("...") tương ứng với 1 hàng. Mỗi từ trong chuỗi tương ứng với 1 cột.
+       - Hàng 1: 'header header header' -> Header trải dài toàn bộ 3 cột.
+       - Hàng 2: 'nav main aside' -> Tương ứng 3 vùng nằm cạnh nhau: Menu trái, Nội dung chính, Quảng cáo phải.
+       - Hàng 3: 'footer footer footer' -> Footer trải dài toàn bộ 3 cột ở dưới cùng.
+    */
+    grid-template-areas: 
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+
+    /* gap: Tạo khoảng cách hợp lý (20px) giữa các vùng lưới (cả hàng và cột) */
+    gap: 20px;
+    
+    /* Đảm bảo layout chiếm tối thiểu toàn màn hình nếu ít nội dung */
+    min-height: calc(100vh - 40px);
+}
+
+
+/* ========================================================
+   2. GÁN CÁC PHẦN TỬ VÀO VÙNG LƯỚI TƯƠNG ỨNG 
+   ======================================================== */
+
+.header {
+    /* 
+       grid-area: header;
+       - Liên kết phần tử HTML class 'header' vào vùng có tên là "header" đã định nghĩa trong grid-template-areas ở trên.
+    */
+    grid-area: header;
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.sidebar-left {
+    /* 
+       grid-area: nav;
+       - Liên kết phần tử HTML class 'sidebar-left' vào vùng có tên là "nav".
+    */
+    grid-area: nav;
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.main-content {
+    /* 
+       grid-area: main;
+       - Liên kết phần tử HTML class 'main-content' vào vùng có tên là "main".
+    */
+    grid-area: main;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.sidebar-right {
+    /* 
+       grid-area: aside;
+       - Liên kết phần tử HTML class 'sidebar-right' vào vùng có tên là "aside".
+    */
+    grid-area: aside;
+    background-color: #e74c3c;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.footer {
+    /* 
+       grid-area: footer;
+       - Liên kết phần tử HTML class 'footer' vào vùng có tên là "footer".
+    */
+    grid-area: footer;
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+/* ========================================================
+   3. STYLING CHI TIẾT (Làm đẹp UI bên trong các vùng)
+   ======================================================== */
+
+/* Styling cho Menu ở Sidebar trái */
+.sidebar-left ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.sidebar-left ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar-left ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    background-color: #2c3e50;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.sidebar-left ul li a:hover {
+    background-color: #1abc9c;
+}
+
+/* Styling cho nội dung Main Content */
+.main-content h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+
+.main-content p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Styling cho Quảng cáo ở Sidebar phải */
+.sidebar-right h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.ad-item {
+    background-color: #fff;
+    color: #e74c3c;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive cơ bản để layout không vỡ trên màn hình nhỏ (mobile/tablet) */
+@media screen and (max-width: 768px) {
+    .grid-container {
+        /* Chuyển thành 1 cột duy nhất trên mobile */
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
+    }
+}

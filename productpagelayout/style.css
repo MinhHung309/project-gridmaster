@@ -1,0 +1,229 @@
+/* Cài đặt cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 40px 20px;
+}
+
+
+/* =================================================================
+   1. BỐ CỤC CHÍNH BẰNG CSS GRID (60% - 40%)
+   ================================================================= */
+.product-container {
+    background-color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+    /* Bật tính năng CSS Grid cho container chứa 2 phần: Ảnh và Thông tin */
+    display: grid;
+    
+    /* 
+       grid-template-columns: 6fr 4fr; (hoặc 60% 40%)
+       - '6fr' (6 phần) ứng với cột trái (ảnh) chiếm 60% chiều rộng.
+       - '4fr' (4 phần) ứng với cột phải (thông tin) chiếm 40% chiều rộng.
+       Đây là cách chính xác và ngắn gọn nhất để tạo bố cục phân chia theo tỷ lệ.
+    */
+    grid-template-columns: 6fr 4fr;
+    
+    /* gap: Tạo khoảng trống 40px giữa cột ảnh và cột thông tin */
+    gap: 40px;
+    
+    /* align-items: start; Đảm bảo cột bên phải không bị kéo giãn chiều cao theo cột trái */
+    align-items: start; 
+}
+
+
+/* =================================================================
+   2. STYLING CỘT TRÁI (ẢNH SẢN PHẨM)
+   ================================================================= */
+.product-gallery > img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    object-fit: cover;
+}
+
+/* Sử dụng thêm Flexbox nhẹ cho dãy ảnh nhỏ phía dưới (nếu có) */
+.product-thumbnails {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.product-thumbnails img {
+    width: calc(33.33% - 10px);
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.product-thumbnails img:hover {
+    opacity: 1;
+}
+
+
+/* =================================================================
+   3. STYLING CỘT PHẢI (THÔNG TIN SẢN PHẨM)
+   ================================================================= */
+.product-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.old-price {
+    font-size: 1.2rem;
+    color: #95a5a6;
+    text-decoration: line-through;
+    margin-left: 15px;
+    font-weight: normal;
+}
+
+.product-description {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+
+/* =================================================================
+   4. CÁC TÙY CHỌN MUA HÀNG BẰNG FLEXBOX (SIZE, MÀU, SỐ LƯỢNG)
+   ================================================================= */
+.option-group {
+    margin-bottom: 20px;
+}
+
+.option-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+/* 
+   Class dùng chung cho tất cả các nhóm tùy chọn.
+   Bật Flexbox để các nút bấm (S, M, L / chấm màu / + -) nằm ngang hàng với nhau.
+*/
+.flex-box {
+    display: flex;
+    /* Căn giữa các mục theo chiều dọc */
+    align-items: center; 
+    /* Khoảng cách giữa các nút bấm */
+    gap: 15px;
+}
+
+/* Styling Nút chọn Size (Kích cỡ) */
+.size-item {
+    padding: 8px 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.size-item:hover, .size-item.active {
+    border-color: #3498db;
+    background-color: #3498db;
+    color: white;
+}
+
+/* Styling Ô chọn Màu sắc */
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 1px #bdc3c7; /* Viền ngoài */
+    transition: all 0.2s;
+}
+
+.color-circle:hover, .color-circle.active {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #e74c3c; /* Hiệu ứng viền 2 lớp khi được chọn */
+}
+
+/* Styling Bộ chọn Số lượng */
+.quantity-selector {
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    /* Ghi đè gap dùng chung để các nút số lượng dính sát vào nhau */
+    gap: 0; 
+    width: max-content;
+}
+
+.qty-btn {
+    background-color: #f1f2f6;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.qty-btn:hover {
+    background-color: #dfe4ea;
+}
+
+.qty-input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #bdc3c7;
+    border-right: 1px solid #bdc3c7;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+/* =================================================================
+   5. NÚT THÊM VÀO GIỎ HÀNG
+   ================================================================= */
+.add-to-cart-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #c0392b;
+}
+
+
+/* =================================================================
+   6. RESPONSIVE (Cho điện thoại / Tablet)
+   ================================================================= */
+@media (max-width: 900px) {
+    .product-container {
+        /* Chuyển Grid thành 1 cột trên màn hình nhỏ */
+        grid-template-columns: 1fr;
+    }
+}

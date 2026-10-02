@@ -1,0 +1,164 @@
+/* Cài đặt cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* =================================================================
+   1. CẤU HÌNH FLEXBOX CHO THANH ĐIỀU HƯỚNG (NAVBAR)
+   ================================================================= */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    /* Bật tính năng Flexbox cho thẻ <nav> */
+    display: flex;
+    
+    /* 
+       justify-content: space-between; (Yêu cầu bắt buộc)
+       - Thuộc tính này sẽ đẩy Nhóm 1 (Logo) về sát mép trái,
+       - Nhóm 3 (Nút) về sát mép phải,
+       - và giữ Nhóm 2 (Menu) ở chính giữa khoảng trống còn lại.
+       - Đây là cách nhanh nhất và chuẩn nhất để tạo bố cục 3 thành phần rời xa nhau.
+    */
+    justify-content: space-between;
+    
+    /* Căn giữa các nhóm theo chiều dọc (để chữ và nút nằm ngay hàng ngang) */
+    align-items: center;
+}
+
+/* Styling cơ bản cho Logo */
+.logo a {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* =================================================================
+   2. CẤU HÌNH MENU CHÍNH VÀ CÁC NÚT BẰNG FLEXBOX
+   ================================================================= */
+.nav-menu {
+    /* Menu cũng là một Flexbox để xếp các thẻ <li> nằm ngang hàng */
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Khoảng cách giữa các mục menu */
+}
+
+.nav-menu > li > a {
+    text-decoration: none;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px 0;
+    transition: color 0.3s;
+}
+
+.nav-menu > li > a:hover {
+    color: #3498db;
+}
+
+.nav-actions {
+    /* Nhóm nút bên phải cũng là Flexbox để nằm ngang */
+    display: flex;
+    gap: 15px;
+}
+
+/* Styling cho các nút */
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-login {
+    color: #3498db;
+    border: 2px solid #3498db;
+}
+
+.btn-login:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-register {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #3498db;
+}
+
+.btn-register:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+
+/* =================================================================
+   3. CẤU HÌNH DROPDOWN (MENU THẢ XUỐNG) KHI HOVER
+   ================================================================= */
+
+/* 
+   Bước 1: Thiết lập thẻ <li> chứa dropdown làm thẻ định vị gốc (relative)
+   Để lát nữa menu con xổ xuống sẽ bám sát vào ngay dưới chữ "Sản phẩm"
+*/
+.dropdown {
+    position: relative;
+}
+
+/* 
+   Bước 2: Cấu hình Menu con xổ xuống
+*/
+.dropdown-menu {
+    /* Mặc định ẨN menu đi bằng display: none; */
+    display: none;
+    
+    /* Đặt thẻ menu con thành phần tử trôi nổi, không đẩy các nội dung khác */
+    position: absolute;
+    top: 100%; /* Đẩy menu con xuống sát mép dưới của chữ "Sản phẩm" */
+    left: 0;
+    
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    min-width: 200px;
+    padding: 10px 0;
+    
+    /* 
+       Sắp xếp các mục con bên trong dropdown theo chiều dọc bằng Flexbox 
+       như đã được yêu cầu. Mặc định flex-direction là row (ngang), ta đổi thành column (dọc)
+    */
+    flex-direction: column;
+}
+
+/* 
+   Bước 3: Hiển thị Menu con khi di chuột (hover) vào thẻ <li> cha (.dropdown)
+*/
+.dropdown:hover .dropdown-menu {
+    /* Thay vì display: block, ta dùng display: flex để vẫn giữ cấu trúc Flexbox bên trong dropdown */
+    display: flex; 
+}
+
+/* Styling cho các liên kết bên trong menu con */
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #555;
+    padding: 12px 20px;
+    /* Dùng display: block để click được trên toàn bộ diện tích của dòng */
+    display: block; 
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1f2f6;
+    color: #3498db;
+}

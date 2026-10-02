@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh điều hướng phức hợp - Flexbox</title>
+    <!-- Liên kết đến file CSS riêng -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Bắt đầu phần thanh điều hướng -->
+    <nav class="navbar">
+        
+        <!-- Nhóm 1: Logo bên trái -->
+        <div class="logo">
+            <a href="#">MyLogo</a>
+        </div>
+
+        <!-- Nhóm 2: Menu chính ở giữa -->
+        <ul class="nav-menu">
+            <li><a href="#">Trang chủ</a></li>
+            
+            <!-- Mục menu có chứa Dropdown -->
+            <li class="dropdown">
+                <a href="#">Sản phẩm ▾</a>
+                <!-- Sub-menu (Dropdown) -->
+                <ul class="dropdown-menu">
+                    <li><a href="#">Điện thoại di động</a></li>
+                    <li><a href="#">Máy tính xách tay</a></li>
+                    <li><a href="#">Phụ kiện thông minh</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Dịch vụ</a></li>
+            <li><a href="#">Liên hệ</a></li>
+        </ul>
+
+        <!-- Nhóm 3: Nút chức năng bên phải -->
+        <div class="nav-actions">
+            <a href="#" class="btn btn-login">Đăng nhập</a>
+            <a href="#" class="btn btn-register">Đăng ký</a>
+        </div>
+
+    </nav>
+
+    <!-- Nội dung trang mẫu để dễ hình dung thanh điều hướng nằm ở đâu -->
+    <main style="padding: 50px; text-align: center;">
+        <h1>Chào mừng đến với trang web của chúng tôi</h1>
+        <p>Đây là bài thực hành tạo thanh điều hướng (Navbar) bằng CSS Flexbox.</p>
+    </main>
+
+</body>
+</html>
